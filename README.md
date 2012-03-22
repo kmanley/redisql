@@ -29,9 +29,15 @@ An experimental SQL client for the Redis key-value store.
     >>> c.query("insert into people (id, name, age) values (4, 'Dan', 25)")
     >>> c.query("insert into people (id, name, town, age) values (5, 'Ed', 'New York', 32)")
     >>> pprint.pprint(c.query("select * from people"))
+	[{'age': '30', 'id': '1', 'name': 'Aaron'},
+ 	{'age': '40', 'id': '3', 'name': 'Charlie'},
+ 	{'age': '20', 'id': '2', 'name': 'Ben'},
+ 	{'age': '32', 'id': '5', 'name': 'Ed', 'town': 'New York'},
+ 	{'age': '25', 'id': '4', 'name': 'Dan'}]
+	>>>    
 
 ## Notes
-* Being implemented on Redis, the underlying conceptual structure is schemaless
+* Being implemented on Redis, the underlying "table" structure is schemaless
 * "Tables" are created on the fly, each "row" can have arbitrary "columns"
 * Each "row" must have an id attribute (this restriction may be lifted later)
 
@@ -42,6 +48,7 @@ selects are supported. But so far the concept seems useful and I plan to continu
 building on it. Contributions are encouraged!
 
 The following are on the roadmap:
+
 * support WHERE clause on SELECT
 * support ORDER BY clause on SELECT
 * CREATE INDEX support and transparent use of indexes
