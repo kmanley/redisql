@@ -30,21 +30,36 @@ An experimental SQL client for the Redis key-value store.
     >>> c.query("insert into people (id, name, town, age) values (5, 'Ed', 'New York', 32)")
     >>> pprint.pprint(c.query("select * from people"))
 
-## Status
+## Notes
+* Being implemented on Redis, the underlying conceptual structure is schemaless
+* "Tables" are created on the fly, each "row" can have arbitrary "columns"
+* Each "row" must have an id attribute (this restriction may be lifted later)
+
+## Roadmap
 
 This is currently a very bare-bones implementation. Only simple inserts and
-selects are supported. But so far the concept seems useful so I'll continue 
-to build on it. Contributions are encouraged! 
+selects are supported. But so far the concept seems useful and I plan to continue
+building on it. Contributions are encouraged!
+
+The following are on the roadmap:
+* support WHERE clause on SELECT
+* support ORDER BY clause on SELECT
+* CREATE INDEX support and transparent use of indexes
+* DELETE support
+* INSERT ... SELECT support
+* Complex expression support 
 
 Author
 ------
 redisql is developed and maintained by Kevin Manley (kevin.manley@gmail.com).
+
 It can be found here: http://github.com/kmanley/redisql
 
 License
 ------
-The MIT License (MIT)
-Copyright (c) 2012 Kevin T. Manley
+MIT License (MIT)
+
+redisql Copyright (c) 2012 Kevin T. Manley
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
