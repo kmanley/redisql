@@ -12,7 +12,7 @@ class Engine(object):
             
     def iterselect(self, params):
         attnames, tablename = params
-        idvalues = self.conn.smembers("%s_ids" % tablename)
+        idvalues = self.conn.smembers("%s_id" % tablename)
         for idvalue in idvalues:
             mapping = self.conn.hgetall("%s:%s" % (tablename, idvalue))
             if attnames != "*":
@@ -32,6 +32,6 @@ class Engine(object):
             idvalue = mapping["id"]
         except KeyError:
             raise Error("you must specify the 'id' column and value") 
-        self.conn.sadd("%s_ids" % tablename, idvalue)
+        self.conn.sadd("%s_id" % tablename, idvalue)
         self.conn.hmset("%s:%s" % (tablename, idvalue), mapping)
 
