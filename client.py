@@ -2,15 +2,16 @@ from engine import Engine
 from sqlparser import SqlLexer, SqlParser
 
 class Client(object):
-    def __init__(self, host="localhost", port=6379):
-        self.engine = Engine(host=host, port=port)
+    def __init__(self, host="localhost", port=6379, verbose=False):
+        self.engine = Engine(host=host, port=port, verbose=verbose)
         self.lexer = SqlLexer().build()
         self.parser = SqlParser().build()
         
     def query(self, sql):
         ast = self.parser.parse(sql, lexer=self.lexer)
-        result = self.engine.execute(ast)
-        return result
+        if ast:
+            result = self.engine.execute(ast)
+            return result
 
 def unittest():
     import pprint
