@@ -5,6 +5,10 @@ http://yaxx.googlecode.com/svn/trunk/sql/sql2.y
 # TODO: support select fname + ' ' + lname from people
 see grammar above
 
+# TODO: break sqlparser into its own file, have it instantiate AstNodes via
+a factory, so a client of sqlparser can customize (derive from AstNode) and
+have custom actions
+
 """
 from ply import lex, yacc
 
